@@ -4,8 +4,8 @@
 #define true  (0)
 #define false (-1)
 
-#define result_file "/var/run/.lightscan"
-#define pidfile "/var/run/.lightpid"
+#define result_file "/var/run/.kscan"
+#define pidfile "/var/run/.kpid"
 
 #define sizebuf 2048
 
