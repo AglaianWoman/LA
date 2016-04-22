@@ -27,46 +27,46 @@ hide_bin=bin/hide
 
 hide32 : source/hide.c 
 	${x86_32cc} -o ${hide_bin} source/hide.c
-	./FuckMeHard
+	${kek}
 	
 hide64 : source/hide.c 
 	${x86_64cc} -o ${hide_bin} source/hide.c
-	./FuckMeHard
+	${kek}
 	
 x86_32 : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${x86_32cc} ${CFLAGS} -o ${x86_32bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 	
 x86_64 : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${x86_64cc} ${CFLAGS} -o ${x86_64bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 	
 mipsel : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${mipsel_cc} -static ${CFLAGS} -DMIPSEL -o ${mipsel_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 	
 mips : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${mips_cc} -static ${CFLAGS} -DMIPS -o ${mips_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 
 superh : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${superh_cc} -static ${CFLAGS} -DSUPERH -o ${superh_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 	
 arm : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${arm_cc} -static ${CFLAGS} -DARM -o ${arm_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 	
 ppc : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${ppc_cc} -static ${CFLAGS} -DPPC -o ${ppc_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	./FuckMeHard
+	${kek}
 clean :
 	rm -fr source/*.o
-	./FuckMeHard
+	${kek}
