@@ -22,7 +22,7 @@ retry:
     sp = (sock_t *) malloc(sizeof(sock_t));
 
     if (connect_to_irc(sp)) {
-        if (background_mode) printf("!Lightaidra: connection failed to %s!", isrv[counter]);
+        if (background_mode) printf("Connection failed to %s!", isrv[counter]);
 
         if (counter <= total) counter++;
         else counter = 0;
