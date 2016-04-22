@@ -9,8 +9,8 @@
 /* WARNING: DON'T CHANGE PASSPROTO VALUE IF YOU DON'T    */
 /* HAVE AN MODDED PROTOCOL IRCD!!!                       */
 #define irc_servers  "127.0.0.1:6666|127.0.0.2:6667"
-#define passproto    "PASS"
-#define irc_passwd   "fuckya"
+#define passproto    ""
+#define irc_passwd   ""
 /* IRC SERVER ENCRYPTED 0=IRC_SERVERS 1=ENC_SERVERS */
 /* USE HIDE.C TO CREATE YOUR CRYPTED SERVER LIST    */
 #define encirc 0
