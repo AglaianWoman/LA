@@ -65,5 +65,4 @@ Now go to IRC server and command your bot.
 BUGS
 ----
 
-If you find bugs (which is quite likely), please submit them to <eurialo@deftcode.ninja> 
-with specific information, such as your command-line, the nature of the bug and other.
+ADDED / FIXED ALOT OF SHIT GUYS
